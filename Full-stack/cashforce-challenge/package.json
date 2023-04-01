@@ -1,0 +1,21 @@
+{
+  "name": "cashforce-fullstack-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compose:up": "docker-compose up -d --build",
+    "compose:down": "docker-compose down --remove-orphans",
+    "db:build": "docker exec cashforce-backend sh -c 'npm run db:reset'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kelderpassos/cashforce-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kelderpassos/cashforce-challenge/issues"
+  },
+  "homepage": "https://github.com/kelderpassos/cashforce-challenge#readme"
+}
