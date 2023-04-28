@@ -8,7 +8,7 @@ export const TaskZodSchema = z.object({
   createdAt: z.string().transform(str => new Date(str)),
 })
 
-export type Task = z.infer<typeof TaskZodSchema>
+export type TaskInterface = z.infer<typeof TaskZodSchema>
 
 
 export const UserZodSchema = z.object({
@@ -19,4 +19,4 @@ export const UserZodSchema = z.object({
   createdAt: z.string().transform(str => new Date(str)),
 })
 
-export type User = z.infer<typeof UserZodSchema>
+export type UserInterface = z.infer<typeof UserZodSchema>
