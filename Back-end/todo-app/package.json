@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsup src --out-dir build",
     "compose-up": "docker-compose up -d --build",
     "compose-down": "docker-compose down --remove-orphans",
-    "dev": "tsnd --respawn ./src/app.ts",
+    "dev": "tsx watch src/server.ts",
+    "start": "node build/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -23,10 +25,13 @@
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/node": "^18.16.2",
+    "@typescript-eslint/eslint-plugin": "5.59.1",
+    "@typescript-eslint/parser": "5.59.1",
     "dotenv": "^16.0.3",
+    "eslint": "8.39.0",
     "prisma": "^4.13.0",
-    "ts-node": "^10.9.1",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^5.0.4"
+    "tsup": "^6.7.0",
+    "tsx": "^3.12.6",
+    "typescript": "5.0.4"
   }
 }
