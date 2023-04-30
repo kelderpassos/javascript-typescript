@@ -7,20 +7,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id            String @id @default(uuid())
+  name          String
+  email         String @unique
+  password_hash String
+  tasks         Task[]
+
+  @@map("users")
+}
+
 model Task {
   id          String   @id @default(uuid())
   description String
   createdAt   DateTime @default(now())
   finishedAt  DateTime
 
+  user    User   @relation(fields: [user_Id], references: [id])
+  user_Id String
+
   @@map("tasks")
-}
-
-model User {
-  id            String @id @default(uuid())
-  name          String
-  email         String @unique
-  password_hash String
-
-  @@map("users")
 }
