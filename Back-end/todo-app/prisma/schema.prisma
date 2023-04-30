@@ -20,8 +20,8 @@ model User {
 model Task {
   id          String   @id @default(uuid())
   description String
-  createdAt   DateTime @default(now())
-  finishedAt  DateTime
+  created_at  DateTime @default(now())
+  finished_at String
 
   user    User   @relation(fields: [user_Id], references: [id])
   user_Id String
