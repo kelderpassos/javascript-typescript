@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { CreateTaskController } from '@/modules/useCases/tasks/createTask/CreateTaskController'
-import { GetAllTasksController } from '@/modules/useCases/tasks/getTask/GetAllTasksController'
+import { GetAllTasksController } from '@/modules/useCases/tasks/getTask/GetTasksByIdController'
 
 export const route = Router()
 
