@@ -1,11 +1,11 @@
 import express from 'express'
 import cors from 'cors'
-// import { taskRoute } from "./routes/TaskRoute";
-import 'dotenv/config'
+import { route } from './routes/task'
 
 export const app = express()
 
 app.use(express.json())
 app.use(cors())
+app.use(route)
 
 
