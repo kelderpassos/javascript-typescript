@@ -3,7 +3,7 @@ import { z } from 'zod'
 export const TaskZodSchema = z.object({
   id: z.number().optional(),
   description: z.string(),
-  finishedAt: z.string().transform(str => new Date(str)),
+  finishedAt: z.string().datetime({ offset: true }),
   userId: z.string(),
 })
 
