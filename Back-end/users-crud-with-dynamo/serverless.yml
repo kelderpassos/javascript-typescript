@@ -13,6 +13,12 @@ functions:
       - httpApi:
           path: /user
           method: post
+  getUser:
+    handler: src/functions/handlers.getUser
+    events:
+      - httpApi:
+          path: /user/{id}
+          method: get
 
 iam:
   role:
