@@ -1,0 +1,46 @@
+service: usersCrud
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: sa-east-1
+
+functions:
+  createUser:
+    handler: src/functions/handlers.createUser
+    events:
+      - httpApi:
+          path: /user
+          method: post
+
+iam:
+  role:
+    statements:
+      - Effects: Allow
+        Action:
+          - "dynamodb:PutItem"
+          - "dynamodb:GetItem"
+          - "dynamodb:DeleteItem"
+          - "dynamodb:Scan"
+        Resource:
+          - { "Fn::GetAtt": ["UsersTable", "Arn"] }
+
+resources:
+  Resources:
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: UsersTable
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+      AttributeDefinitions:
+        - AttributeName: userID
+          AttributeType: S
+      KeySchema:
+        - AttributeName: userID
+          KeyType: HASH
+
+plugins:
+  - serverless-plugin-typescript
