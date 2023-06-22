@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "dev": "nodemon --watch 'src/' --exec 'ts-node src/index.ts' -e ts",
+    "build": "tsc && tsc-alias",
+    "dev": "nodemon --watch 'src/' --exec 'ts-node -r tsconfig-paths/register src/index.ts' -e ts",
     "start": "node build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,6 +21,8 @@
     "nodemon": "^2.0.22",
     "prettier": "^2.8.8",
     "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.6",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.1.3"
   }
 }
