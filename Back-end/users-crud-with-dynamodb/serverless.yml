@@ -25,13 +25,13 @@ provider:
 
 functions:
   createUser:
-    handler: src/functions/handlers.createUser
+    handler: src/functions/handlers.create
     events:
     - http:
         path: /user
         method: post
   getUser:
-    handler: src/functions/handlers.getUser
+    handler: src/functions/handlers.readOne
     events:
     - http:
         path: /user/{id}
