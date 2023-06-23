@@ -3,7 +3,7 @@ frameworkVersion: "3"
 
 custom:
   settings:
-    USERS_TABLE: users
+    USERS_TABLE: Users
 provider:
   name: aws
   runtime: nodejs18.x
@@ -23,11 +23,11 @@ provider:
 
 functions:
   createUser:
-    handler: handler.createUser
+    handler: src/functions/handlers.createUser
     events:
     - http:
-      path: /user
-      method: post
+        path: /user
+        method: post
 
 resources:
   Resources:
