@@ -4,6 +4,7 @@ frameworkVersion: "3"
 custom:
   settings:
     USERS_TABLE: Users
+
 provider:
   name: aws
   runtime: nodejs18.x
