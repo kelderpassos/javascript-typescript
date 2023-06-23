@@ -9,17 +9,19 @@ provider:
   runtime: nodejs18.x
   environment: ${self:custom.settings}
   region: sa-east-1
-  iamRoleStatements:
-    - Effect: "Allow"
-      Action:
-        - dynamodb:DescribeTable
-        - dynamodb:Scan
-        - dynamodb:GetUser
-        - dynamodb:PutUser
-        - dynamodb:UpdateUser
-        - dynamodb:DeleteUser
-      Resource:
-        - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.settings.USERS_TABLE}"
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - dynamodb:DescribeTable
+            - dynamodb:Scan
+            - dynamodb:GetUser
+            - dynamodb:PutUser
+            - dynamodb:UpdateUser
+            - dynamodb:DeleteUser
+          Resource:
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.settings.USERS_TABLE}"
 
 functions:
   createUser:
@@ -28,6 +30,12 @@ functions:
     - http:
         path: /user
         method: post
+  getUser:
+    handler: src/functions/handlers.getUser
+    events:
+    - http:
+        path: /user/{id}
+        method: get
 
 resources:
   Resources:
