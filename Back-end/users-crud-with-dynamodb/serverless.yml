@@ -24,13 +24,13 @@ provider:
             - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.settings.USERS_TABLE}"
 
 functions:
-  createUser:
+  create:
     handler: src/functions/handlers.create
     events:
     - http:
         path: /user
         method: post
-  getUser:
+  readOne:
     handler: src/functions/handlers.readOne
     events:
     - http:
