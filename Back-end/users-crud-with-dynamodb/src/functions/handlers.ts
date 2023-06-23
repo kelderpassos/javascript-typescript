@@ -11,14 +11,24 @@ export const createUser = async (
     const body = JSON.parse(event.body as string)
     const user = { id: v4(), ...body }
 
-    await dynamoDb
-      .put({
-        TableName: tableName,
-        Item: user,
-      })
-      .promise()
+    await dynamoDb.put({ TableName: tableName, Item: user }).promise()
 
     return { statusCode: 201, body: JSON.stringify(user) }
+  } catch (error) {
+    return { statusCode: 500, body: JSON.stringify(error) }
+  }
+}
+
+export const getUser = async (
+  event: APIGatewayProxyEvent
+): Promise<APIGatewayProxyResult> => {
+  const id = event.pathParameters?.id
+
+  try {
+    const user = await dynamoDb
+      .get({ TableName: tableName, Key: { id } })
+      .promise()
+    return { statusCode: 200, body: JSON.stringify(user) }
   } catch (error) {
     return { statusCode: 500, body: JSON.stringify(error) }
   }
