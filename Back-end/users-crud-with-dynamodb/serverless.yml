@@ -36,6 +36,12 @@ functions:
     - http:
         path: /user/{id}
         method: get
+  readAll:
+    handler: src/functions/handlers.readAll
+    events:
+    - http:
+        path: /users
+        method: get
 
 resources:
   Resources:

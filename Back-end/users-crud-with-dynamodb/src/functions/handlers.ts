@@ -4,7 +4,7 @@ import { dynamoDb } from './database'
 
 const tableName = 'Users'
 
-export const createUser = async (
+export const create = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
   try {
@@ -19,7 +19,7 @@ export const createUser = async (
   }
 }
 
-export const getUser = async (
+export const readOne = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
   const id = event.pathParameters?.id
@@ -29,6 +29,15 @@ export const getUser = async (
       .get({ TableName: tableName, Key: { id } })
       .promise()
     return { statusCode: 200, body: JSON.stringify(user) }
+  } catch (error) {
+    return { statusCode: 500, body: JSON.stringify(error) }
+  }
+}
+
+export const readAll = async (): Promise<APIGatewayProxyResult> => {
+  try {
+    const user = await dynamoDb.scan({ TableName: tableName }).promise()
+    return { statusCode: 200, body: JSON.stringify(user.Items) }
   } catch (error) {
     return { statusCode: 500, body: JSON.stringify(error) }
   }
